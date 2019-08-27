@@ -9,12 +9,6 @@
 import UIKit
 import MapKit
 
-extension Place: MKAnnotation {
-    public var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-}
-
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!

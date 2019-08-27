@@ -10,6 +10,7 @@
 		5B76EE102314BC60005AA5F2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76EE0F2314BC60005AA5F2 /* DetailViewController.swift */; };
 		5B76EE122314D739005AA5F2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76EE112314D739005AA5F2 /* CoreDataStack.swift */; };
 		5B76EE152314DAB0005AA5F2 /* VirtualTourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B76EE132314DAB0005AA5F2 /* VirtualTourist.xcdatamodeld */; };
+		5B76EE172314E1D7005AA5F2 /* Place+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76EE162314E1D7005AA5F2 /* Place+extension.swift */; };
 		5B9189462311EF970057D8B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9189452311EF970057D8B2 /* AppDelegate.swift */; };
 		5B9189482311EF970057D8B2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9189472311EF970057D8B2 /* MapViewController.swift */; };
 		5B91894B2311EF970057D8B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B9189492311EF970057D8B2 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		5B76EE0F2314BC60005AA5F2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5B76EE112314D739005AA5F2 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5B76EE142314DAB0005AA5F2 /* VirtualTourist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VirtualTourist.xcdatamodel; sourceTree = "<group>"; };
+		5B76EE162314E1D7005AA5F2 /* Place+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+extension.swift"; sourceTree = "<group>"; };
 		5B9189422311EF970057D8B2 /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B9189452311EF970057D8B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B9189472311EF970057D8B2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				5B76EE112314D739005AA5F2 /* CoreDataStack.swift */,
 				5B76EE132314DAB0005AA5F2 /* VirtualTourist.xcdatamodeld */,
+				5B76EE162314E1D7005AA5F2 /* Place+extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B76EE102314BC60005AA5F2 /* DetailViewController.swift in Sources */,
+				5B76EE172314E1D7005AA5F2 /* Place+extension.swift in Sources */,
 				5B76EE152314DAB0005AA5F2 /* VirtualTourist.xcdatamodeld in Sources */,
 				5B9189482311EF970057D8B2 /* MapViewController.swift in Sources */,
 				5B9189462311EF970057D8B2 /* AppDelegate.swift in Sources */,
