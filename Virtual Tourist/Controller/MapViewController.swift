@@ -9,16 +9,6 @@
 import UIKit
 import MapKit
 
-class Place: NSObject {
-    let latitude: Double
-    let longitude: Double
-    
-    init(latitude: Double, longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-}
-
 extension Place: MKAnnotation {
     public var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -46,7 +36,12 @@ class MapViewController: UIViewController {
                 //TODO: - disable long press in edit mode
                 let location = gestureRecognizer.location(in: mapView)
                 let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
-                let place = Place(latitude: coordinates.latitude, longitude: coordinates.longitude)
+                
+                //TODO: - separate func createPlace
+                let place = Place(context: coreDataStack.viewContext)
+                place.latitude = coordinates.latitude
+                place.longitude = coordinates.longitude
+                
                 places.append(place)
                 mapView.addAnnotation(place)
             }
