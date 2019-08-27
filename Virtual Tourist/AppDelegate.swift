@@ -12,8 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let coreDataStack = CoreDataStack(modelName: "VirtualTourist")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let navigationController = window?.rootViewController as! UINavigationController
+        let mapViewController = navigationController.topViewController as! MapViewController
+        mapViewController.coreDataStack = coreDataStack
         
         return true
     }

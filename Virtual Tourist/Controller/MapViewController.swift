@@ -30,6 +30,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var deleteInfoLabel: UILabel!
     
+    var coreDataStack: CoreDataStack!
+    
     var places = [Place]() {
         didSet {
             print(places.count)
