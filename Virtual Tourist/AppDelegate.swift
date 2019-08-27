@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        coreDataStack.load {
+            // set to nil for now
+        }
+        
         let navigationController = window?.rootViewController as! UINavigationController
         let mapViewController = navigationController.topViewController as! MapViewController
         mapViewController.coreDataStack = coreDataStack
