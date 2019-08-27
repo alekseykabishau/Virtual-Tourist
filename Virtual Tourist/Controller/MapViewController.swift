@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class MapViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class MapViewController: UIViewController {
     
     var coreDataStack: CoreDataStack!
     
+    //TODO: - remove when it's not needed
     var places = [Place]() {
         didSet {
             print(places.count)
@@ -31,10 +33,13 @@ class MapViewController: UIViewController {
                 let location = gestureRecognizer.location(in: mapView)
                 let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
                 
-                //TODO: - separate func createPlace
+                //TODO: - separate func for Place creation?
                 let place = Place(context: coreDataStack.viewContext)
                 place.latitude = coordinates.latitude
                 place.longitude = coordinates.longitude
+                
+                //TODO: - add notification for user about issues
+                try? coreDataStack.viewContext.save()
                 
                 places.append(place)
                 mapView.addAnnotation(place)
@@ -49,6 +54,16 @@ class MapViewController: UIViewController {
         title = "Virtual Tourist"
         
         setMapPosition()
+        loadPlaces()
+    }
+    
+    func loadPlaces() {
+        let fetchRequest: NSFetchRequest<Place> = Place.fetchRequest()
+        //TODO: - consider Do-Catch, + sortDescriptor
+        if let result = try? coreDataStack.viewContext.fetch(fetchRequest) {
+            places = result
+            mapView.addAnnotations(places)
+        }
     }
     
     func saveMapPosition() {
@@ -90,7 +105,9 @@ extension MapViewController: MKMapViewDelegate {
         let place = annotation as! Place
         
         if isEditing {
-            //TODO: - remove from saved places
+            //TODO: - separate func remove Place, user notification?
+            coreDataStack.viewContext.delete(place)
+            try? coreDataStack.viewContext.save()
             print("\(place.coordinate) will be deleled")
             places.removeAll { $0 == place }
             mapView.removeAnnotation(annotation)
