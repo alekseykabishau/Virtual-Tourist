@@ -114,6 +114,8 @@ extension MapViewController: MKMapViewDelegate {
         } else {
             //TODO: - transition to Detail Screen
             print("Place \(place.coordinate) is selected")
+            let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            navigationController?.pushViewController(detailViewController, animated: true)
             mapView.deselectAnnotation(annotation, animated: true)
         }
     }
