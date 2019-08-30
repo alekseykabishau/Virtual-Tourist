@@ -17,11 +17,32 @@ class DetailViewController: UIViewController {
     
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    
+    @IBAction func managePhotos(_ sender: UIButton) {
+        if isEditing {
+            print("Delete Selected Photos")
+        } else {
+            print("Get New Colletion")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editButtonItem
 
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        configureUI()
+    }
+    
+    func configureUI() {
+        if isEditing {
+            newColletion.setTitle("Remove Selected Photos", for: .normal)
+        } else {
+            newColletion.setTitle("Get New Collection", for: .normal)
+        }
     }
 }
