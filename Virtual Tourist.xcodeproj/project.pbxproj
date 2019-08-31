@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B47F2D5231A2677001342B1 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47F2D4231A2677001342B1 /* PhotoCell.swift */; };
 		5B76EE102314BC60005AA5F2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76EE0F2314BC60005AA5F2 /* DetailViewController.swift */; };
 		5B76EE122314D739005AA5F2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76EE112314D739005AA5F2 /* CoreDataStack.swift */; };
 		5B76EE152314DAB0005AA5F2 /* VirtualTourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B76EE132314DAB0005AA5F2 /* VirtualTourist.xcdatamodeld */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B47F2D4231A2677001342B1 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5B76EE0F2314BC60005AA5F2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5B76EE112314D739005AA5F2 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5B76EE142314DAB0005AA5F2 /* VirtualTourist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VirtualTourist.xcdatamodel; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		5B9189592312D9560057D8B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5B47F2D4231A2677001342B1 /* PhotoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B47F2D5231A2677001342B1 /* PhotoCell.swift in Sources */,
 				5B76EE102314BC60005AA5F2 /* DetailViewController.swift in Sources */,
 				5B76EE172314E1D7005AA5F2 /* Place+extension.swift in Sources */,
 				5B76EE152314DAB0005AA5F2 /* VirtualTourist.xcdatamodeld in Sources */,

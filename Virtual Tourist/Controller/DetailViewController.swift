@@ -59,3 +59,24 @@ class DetailViewController: UIViewController {
         mapView.addAnnotation(place)
     }
 }
+
+extension DetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !isEditing {
+            print("\(indexPath.item) is selected")
+        }
+    }
+}
+
+extension DetailViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PhotoCell
+        cell.imageView.image = UIImage(named: "placeholderImage")
+        return cell
+    }
+}

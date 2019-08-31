@@ -34,7 +34,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Nf0-Ax-oa0">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Nf0-Ax-oa0" customClass="PhotoCell" customModule="Virtual_Tourist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -52,8 +52,15 @@
                                             <constraint firstItem="4AU-Oe-tzq" firstAttribute="leading" secondItem="Nf0-Ax-oa0" secondAttribute="leading" id="ZsE-pz-I3D"/>
                                             <constraint firstAttribute="bottom" secondItem="4AU-Oe-tzq" secondAttribute="bottom" id="quM-xQ-QLd"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="4AU-Oe-tzq" id="HBa-91-GtP"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="yqC-4d-zhd" id="GEO-Y1-b6h"/>
+                                    <outlet property="delegate" destination="yqC-4d-zhd" id="GhI-Bf-JOP"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-WV-mgA" userLabel="New Collection">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
