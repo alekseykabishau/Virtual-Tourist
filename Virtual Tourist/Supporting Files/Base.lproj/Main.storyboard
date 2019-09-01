@@ -24,6 +24,16 @@
                                     <constraint firstAttribute="height" constant="200" id="L9d-p9-Umf"/>
                                 </constraints>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-WV-mgA" userLabel="New Collection">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rwW-fT-YR7"/>
+                                </constraints>
+                                <state key="normal" title="New Collection"/>
+                                <connections>
+                                    <action selector="managePhotos:" destination="yqC-4d-zhd" eventType="touchUpInside" id="6x7-2h-hT9"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-oE-EfN">
                                 <rect key="frame" x="0.0" y="244" width="414" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,16 +54,24 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4AU-Oe-tzq">
                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                                 </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unchecked" translatesAutoresizingMaskIntoConstraints="NO" id="Obo-Eb-7js">
+                                                    <rect key="frame" x="150" y="150" width="40" height="40"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="4AU-Oe-tzq" firstAttribute="top" secondItem="Nf0-Ax-oa0" secondAttribute="top" id="EWy-X9-JKU"/>
-                                            <constraint firstAttribute="trailing" secondItem="4AU-Oe-tzq" secondAttribute="trailing" id="Qnh-xi-HLV"/>
-                                            <constraint firstItem="4AU-Oe-tzq" firstAttribute="leading" secondItem="Nf0-Ax-oa0" secondAttribute="leading" id="ZsE-pz-I3D"/>
-                                            <constraint firstAttribute="bottom" secondItem="4AU-Oe-tzq" secondAttribute="bottom" id="quM-xQ-QLd"/>
+                                            <constraint firstItem="4AU-Oe-tzq" firstAttribute="leading" secondItem="Nf0-Ax-oa0" secondAttribute="leading" id="609-hR-JvW"/>
+                                            <constraint firstItem="Obo-Eb-7js" firstAttribute="height" secondItem="4AU-Oe-tzq" secondAttribute="height" multiplier="0.2" id="FiM-S7-vjn"/>
+                                            <constraint firstAttribute="bottom" secondItem="4AU-Oe-tzq" secondAttribute="bottom" id="HB9-ht-IQL"/>
+                                            <constraint firstItem="4AU-Oe-tzq" firstAttribute="top" secondItem="Nf0-Ax-oa0" secondAttribute="top" id="YBm-uJ-fdi"/>
+                                            <constraint firstItem="Obo-Eb-7js" firstAttribute="trailing" secondItem="4AU-Oe-tzq" secondAttribute="trailing" constant="-10" id="bMa-eE-xhr"/>
+                                            <constraint firstItem="Obo-Eb-7js" firstAttribute="bottom" secondItem="4AU-Oe-tzq" secondAttribute="bottom" constant="-10" id="qUY-My-NrX"/>
+                                            <constraint firstItem="Obo-Eb-7js" firstAttribute="width" secondItem="4AU-Oe-tzq" secondAttribute="width" multiplier="0.2" id="wkq-cX-3ZI"/>
+                                            <constraint firstAttribute="trailing" secondItem="4AU-Oe-tzq" secondAttribute="trailing" id="wty-U3-FTB"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="imageView" destination="4AU-Oe-tzq" id="HBa-91-GtP"/>
+                                            <outlet property="selectionImage" destination="Obo-Eb-7js" id="B04-Jg-Jmi"/>
+                                            <outlet property="thumbnailImage" destination="4AU-Oe-tzq" id="HBa-91-GtP"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -62,16 +80,6 @@
                                     <outlet property="delegate" destination="yqC-4d-zhd" id="GhI-Bf-JOP"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-WV-mgA" userLabel="New Collection">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="rwW-fT-YR7"/>
-                                </constraints>
-                                <state key="normal" title="New Collection"/>
-                                <connections>
-                                    <action selector="managePhotos:" destination="yqC-4d-zhd" eventType="touchUpInside" id="6x7-2h-hT9"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -171,4 +179,7 @@
             <point key="canvasLocation" x="206" y="138"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Unchecked" width="22" height="22"/>
+    </resources>
 </document>

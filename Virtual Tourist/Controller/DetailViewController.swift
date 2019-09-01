@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
             print("Get New Colletion")
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +40,21 @@ class DetailViewController: UIViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        
+        collectionView.allowsMultipleSelection = editing
+        
+        // cleaning previously selected cells (if any) before entering editing mode
+        collectionView.indexPathsForSelectedItems?.forEach({ (indexPath) in
+            collectionView.deselectItem(at: indexPath, animated: false)
+        })
+        
+        guard let indexPaths = collectionView?.indexPathsForVisibleItems else { return }
+        
+        for indexPath in indexPaths {
+            let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
+            cell.isEditing = editing
+        }
+        
         configureUI()
     }
     
@@ -64,6 +79,7 @@ extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isEditing {
             print("\(indexPath.item) is selected")
+            //TODO: - open in full mode
         }
     }
 }
@@ -76,7 +92,8 @@ extension DetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PhotoCell
-        cell.imageView.image = UIImage(named: "placeholderImage")
+        cell.thumbnailImage.image = UIImage(named: "placeholderImage")
+        cell.isEditing = isEditing
         return cell
     }
 }

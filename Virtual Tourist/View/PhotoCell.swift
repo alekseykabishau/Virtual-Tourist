@@ -10,11 +10,28 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var thumbnailImage: UIImageView!
+    @IBOutlet weak var selectionImage: UIImageView!
+    
+    var isEditing: Bool = false {
+        didSet {
+            selectionImage.isHidden = !isEditing
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isEditing {
+                selectionImage.image = isSelected ? UIImage(named: "Checked") : UIImage(named: "Unchecked")
+            } else {
+                print("not editing")
+            }
+        }
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+        thumbnailImage.image = nil
     }
     
 }
