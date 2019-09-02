@@ -130,17 +130,30 @@ class DetailViewController: UIViewController {
             photo.server = dictionary["server"] as? String
             photo.secret = dictionary["secret"] as? String
             
+            flickrPhotos.append(photo)
+            
             if let url = photo.imageURL() {
                 print(url)
-                photo.thumbImage = try? Data(contentsOf: url)
-            } else {
-                print("no valid url")
+                
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    if error != nil {
+                        print(error ?? "")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        if let data = data {
+                            photo.thumbImage = data
+                        }
+                        try? self.coreDataStack.viewContext.save()
+                        print("saving image \(photo.thumbImage) in core data")
+                        self.collectionView.reloadData()
+                    }
+                }.resume()
             }
             
             photo.place = place
             try? coreDataStack.viewContext.save()
-            
-            flickrPhotos.append(photo)
+            print("saving photo object \(photo.id) in core data")
         }
     }
     
