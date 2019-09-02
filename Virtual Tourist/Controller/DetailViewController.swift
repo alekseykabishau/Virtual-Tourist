@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class DetailViewController: UIViewController {
     
@@ -18,21 +19,49 @@ class DetailViewController: UIViewController {
     var place: Place!
     var coreDataStack: CoreDataStack!
     
+    let flickrAPI = FlickrAPI()
+    var flickrPhotos = [Photo]()
+    
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     
     @IBAction func managePhotos(_ sender: UIButton) {
         if isEditing {
             print("Delete Selected Photos")
+            deletePhotos()
         } else {
             print("Get New Colletion")
+            for photo in flickrPhotos {
+                coreDataStack.viewContext.delete(photo)
+            }
+            try? coreDataStack.viewContext.save()
+            flickrPhotos.removeAll()
+            collectionView.reloadData()
+            getPhotos(for: place)
         }
     }
+    
+    //TODO: - Add RefreshControl to get new collection
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editButtonItem
+        
+        guard let place = place else { return }
+        
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let predicate = NSPredicate(format: "place == %@", place)
+        fetchRequest.predicate = predicate
+        
+        if let result = try? coreDataStack.viewContext.fetch(fetchRequest) {
+            flickrPhotos = result
+            print("\(flickrPhotos.count) in array")
+        }
+        
+        if flickrPhotos.count == 0 {
+            getPhotos(for: place)
+        }
         
         addAnnotation(for: place)
 
@@ -73,6 +102,57 @@ class DetailViewController: UIViewController {
         mapView.setRegion(region, animated: true)
         mapView.addAnnotation(place)
     }
+    
+    func getPhotos(for place: Place) {
+        //TODO: - create type SearchResults with + and Error and use switch in func
+        flickrAPI.searchFlickr(coordinate: place.coordinate) { (photos, error) in
+            if error != nil {
+                print("error getting photos from API")
+            } else {
+                print("found \(photos.count) photo objects")
+                self.save(photos)
+            }
+            //TODO: - how to update photos one by one while they are loading?
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func save(_ searchResults: [[String: AnyObject]]) {
+        for dictionary in searchResults {
+            let photo = Photo(context: coreDataStack.viewContext)
+            photo.id = dictionary["id"] as? String
+            photo.farm = (dictionary["farm"] as? Int16)!
+            photo.server = dictionary["server"] as? String
+            photo.secret = dictionary["secret"] as? String
+            
+            if let url = photo.imageURL() {
+                print(url)
+                photo.thumbImage = try? Data(contentsOf: url)
+            } else {
+                print("no valid url")
+            }
+            
+            photo.place = place
+            try? coreDataStack.viewContext.save()
+            
+            flickrPhotos.append(photo)
+        }
+    }
+    
+    func deletePhotos() {
+        if let selected = collectionView.indexPathsForSelectedItems {
+            // sorting to avoid issue with removing wrong/not existing endexes
+            let itemsToRemove = selected.map { $0.item }.sorted().reversed()
+            print(itemsToRemove)
+            for item in itemsToRemove {
+                let photo = flickrPhotos[item]
+                coreDataStack.viewContext.delete(photo)
+                flickrPhotos.remove(at: item)
+            }
+            try? coreDataStack.viewContext.save()
+            collectionView.deleteItems(at: selected)
+        }
+    }
 }
 
 extension DetailViewController: UICollectionViewDelegate {
@@ -87,12 +167,15 @@ extension DetailViewController: UICollectionViewDelegate {
 extension DetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return flickrPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PhotoCell
-        cell.thumbnailImage.image = UIImage(named: "placeholderImage")
+        let photo = flickrPhotos[indexPath.item]
+        if let imageData = photo.thumbImage {
+            cell.thumbnailImage.image = UIImage(data: imageData)
+        }
         cell.isEditing = isEditing
         return cell
     }
