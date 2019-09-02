@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var newColletion: UIButton!
+    @IBOutlet weak var noImagesLabel: UILabel!
     
     var place: Place!
     var coreDataStack: CoreDataStack!
@@ -31,6 +32,7 @@ class DetailViewController: UIViewController {
             deletePhotos()
         } else {
             print("Get New Colletion")
+            noImagesLabel.isHidden = true
             for photo in flickrPhotos {
                 coreDataStack.viewContext.delete(photo)
             }
@@ -110,6 +112,9 @@ class DetailViewController: UIViewController {
                 print("error getting photos from API")
             } else {
                 print("found \(photos.count) photo objects")
+                if photos.count == 0 {
+                    self.noImagesLabel.isHidden = false
+                }
                 self.save(photos)
             }
             //TODO: - how to update photos one by one while they are loading?

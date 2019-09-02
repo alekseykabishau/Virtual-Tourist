@@ -19,10 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nkm-qj-4Db">
-                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="L9d-p9-Umf"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="44" width="414" height="224"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-WV-mgA" userLabel="New Collection">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
@@ -35,7 +32,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-oE-EfN">
-                                <rect key="frame" x="0.0" y="244" width="414" height="568"/>
+                                <rect key="frame" x="0.0" y="268" width="414" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sL0-Wk-yR3">
                                     <size key="itemSize" width="200" height="200"/>
@@ -80,6 +77,12 @@
                                     <outlet property="delegate" destination="yqC-4d-zhd" id="GhI-Bf-JOP"/>
                                 </connections>
                             </collectionView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Images" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4py-n9-4ni">
+                                <rect key="frame" x="137.5" y="430" width="139" height="36"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -89,8 +92,11 @@
                             <constraint firstItem="nkm-qj-4Db" firstAttribute="leading" secondItem="r9F-XO-H3T" secondAttribute="leading" id="Jbi-gO-yDF"/>
                             <constraint firstItem="8Ip-oE-EfN" firstAttribute="leading" secondItem="r9F-XO-H3T" secondAttribute="leading" id="Kop-pP-7nw"/>
                             <constraint firstItem="r9F-XO-H3T" firstAttribute="trailing" secondItem="8Ip-oE-EfN" secondAttribute="trailing" id="P3N-Bl-2Sn"/>
+                            <constraint firstItem="4py-n9-4ni" firstAttribute="centerY" secondItem="d2g-Oz-HhE" secondAttribute="centerY" id="QDf-uF-lym"/>
+                            <constraint firstItem="nkm-qj-4Db" firstAttribute="height" secondItem="d2g-Oz-HhE" secondAttribute="height" multiplier="0.25" id="aih-DO-9fE"/>
                             <constraint firstItem="nkm-qj-4Db" firstAttribute="top" secondItem="r9F-XO-H3T" secondAttribute="top" id="but-gf-Jir"/>
                             <constraint firstItem="nkm-qj-4Db" firstAttribute="trailing" secondItem="r9F-XO-H3T" secondAttribute="trailing" id="gNR-Ae-bTv"/>
+                            <constraint firstItem="4py-n9-4ni" firstAttribute="centerX" secondItem="d2g-Oz-HhE" secondAttribute="centerX" id="jJI-a4-q5c"/>
                             <constraint firstItem="r9F-XO-H3T" firstAttribute="trailing" secondItem="UOO-WV-mgA" secondAttribute="trailing" id="vr8-Bw-w4s"/>
                             <constraint firstItem="8Ip-oE-EfN" firstAttribute="top" secondItem="nkm-qj-4Db" secondAttribute="bottom" id="zWS-yt-vE2"/>
                         </constraints>
@@ -100,6 +106,7 @@
                         <outlet property="collectionView" destination="8Ip-oE-EfN" id="9wX-cU-v8w"/>
                         <outlet property="mapView" destination="nkm-qj-4Db" id="Obf-oU-U3v"/>
                         <outlet property="newColletion" destination="UOO-WV-mgA" id="4x3-tw-cpA"/>
+                        <outlet property="noImagesLabel" destination="4py-n9-4ni" id="Ms3-5M-2SC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ef-39-vB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
