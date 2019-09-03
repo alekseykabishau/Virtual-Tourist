@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mapViewController = navigationController.topViewController as! MapViewController
         mapViewController.coreDataStack = coreDataStack
         
+        // prints location of SQLite DB of simulator
+        if let directoryLocation = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last {
+            print("Documents Directory: \(directoryLocation)Application Support")
+        }
         return true
     }
 }

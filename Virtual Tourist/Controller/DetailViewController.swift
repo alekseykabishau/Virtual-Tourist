@@ -152,9 +152,8 @@ class DetailViewController: UIViewController {
             }
             
             photo.place = place
-            try? coreDataStack.viewContext.save()
-            print("saving photo object \(photo.id) in core data")
         }
+        try? coreDataStack.viewContext.save()
     }
     
     func deletePhotos() {
