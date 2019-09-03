@@ -129,6 +129,7 @@ class DetailViewController: UIViewController {
             photo.farm = (dictionary["farm"] as? Int16)!
             photo.server = dictionary["server"] as? String
             photo.secret = dictionary["secret"] as? String
+            photo.thumbImage = UIImage(named: "placeholderImage")?.pngData()
             
             flickrPhotos.append(photo)
             
