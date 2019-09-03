@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var newColletion: UIButton!
     @IBOutlet weak var noImagesLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var place: Place!
     var coreDataStack: CoreDataStack!
@@ -97,6 +98,18 @@ class DetailViewController: UIViewController {
         }
     }
     
+    func setLoadingImages(_ isLoading: Bool) {
+        if isLoading {
+            activityIndicator.startAnimating()
+            newColletion.setTitle("", for: .normal)
+        } else {
+            activityIndicator.stopAnimating()
+            newColletion.setTitle("New Collection", for: .normal)
+        }
+        newColletion.isEnabled = !isLoading
+        navigationItem.rightBarButtonItem?.isEnabled = !isLoading
+    }
+    
     //TODO: - Set Title to place name
     func addAnnotation(for place: Place) {
         let coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
@@ -118,7 +131,6 @@ class DetailViewController: UIViewController {
                 self.save(photos)
             }
             //TODO: - how to update photos one by one while they are loading?
-            self.collectionView.reloadData()
         }
     }
     

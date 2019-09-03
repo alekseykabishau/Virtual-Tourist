@@ -21,16 +21,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nkm-qj-4Db">
                                 <rect key="frame" x="0.0" y="44" width="414" height="224"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-WV-mgA" userLabel="New Collection">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="rwW-fT-YR7"/>
-                                </constraints>
-                                <state key="normal" title="New Collection"/>
-                                <connections>
-                                    <action selector="managePhotos:" destination="yqC-4d-zhd" eventType="touchUpInside" id="6x7-2h-hT9"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-oE-EfN">
                                 <rect key="frame" x="0.0" y="268" width="414" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,12 +73,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOO-WV-mgA" userLabel="New Collection">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rwW-fT-YR7"/>
+                                </constraints>
+                                <state key="normal" title="New Collection"/>
+                                <connections>
+                                    <action selector="managePhotos:" destination="yqC-4d-zhd" eventType="touchUpInside" id="6x7-2h-hT9"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gcN-6i-1gU">
+                                <rect key="frame" x="197" y="827" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gcN-6i-1gU" firstAttribute="centerX" secondItem="UOO-WV-mgA" secondAttribute="centerX" id="4CK-Wz-uZw"/>
                             <constraint firstItem="UOO-WV-mgA" firstAttribute="top" secondItem="8Ip-oE-EfN" secondAttribute="bottom" id="HOL-Ce-cP8"/>
                             <constraint firstItem="UOO-WV-mgA" firstAttribute="leading" secondItem="r9F-XO-H3T" secondAttribute="leading" id="JQZ-m2-LzA"/>
                             <constraint firstItem="r9F-XO-H3T" firstAttribute="bottom" secondItem="UOO-WV-mgA" secondAttribute="bottom" id="JUQ-KC-mLT"/>
+                            <constraint firstItem="gcN-6i-1gU" firstAttribute="centerY" secondItem="UOO-WV-mgA" secondAttribute="centerY" id="JV2-9g-6i9"/>
                             <constraint firstItem="nkm-qj-4Db" firstAttribute="leading" secondItem="r9F-XO-H3T" secondAttribute="leading" id="Jbi-gO-yDF"/>
                             <constraint firstItem="8Ip-oE-EfN" firstAttribute="leading" secondItem="r9F-XO-H3T" secondAttribute="leading" id="Kop-pP-7nw"/>
                             <constraint firstItem="r9F-XO-H3T" firstAttribute="trailing" secondItem="8Ip-oE-EfN" secondAttribute="trailing" id="P3N-Bl-2Sn"/>
@@ -103,6 +108,7 @@
                         <viewLayoutGuide key="safeArea" id="r9F-XO-H3T"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="gcN-6i-1gU" id="aJN-qx-dkp"/>
                         <outlet property="collectionView" destination="8Ip-oE-EfN" id="9wX-cU-v8w"/>
                         <outlet property="mapView" destination="nkm-qj-4Db" id="Obf-oU-U3v"/>
                         <outlet property="newColletion" destination="UOO-WV-mgA" id="4x3-tw-cpA"/>
