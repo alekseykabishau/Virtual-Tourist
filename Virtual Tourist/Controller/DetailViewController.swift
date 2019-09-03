@@ -133,8 +133,6 @@ class DetailViewController: UIViewController {
             flickrPhotos.append(photo)
             
             if let url = photo.imageURL() {
-                print(url)
-                
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
                     if error != nil {
                         print(error ?? "")

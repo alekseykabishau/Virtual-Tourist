@@ -17,19 +17,12 @@ class MapViewController: UIViewController {
     
     var coreDataStack: CoreDataStack!
     
-    //TODO: - remove when it's not needed
-    var places = [Place]() {
-        didSet {
-            print(places.count)
-        }
-    }
+    var places = [Place]()
     
     @IBAction func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
         
         if !isEditing {
             if gestureRecognizer.state == .ended {
-                print("long press")
-                //TODO: - disable long press in edit mode
                 let location = gestureRecognizer.location(in: mapView)
                 let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
                 
@@ -112,8 +105,6 @@ extension MapViewController: MKMapViewDelegate {
             places.removeAll { $0 == place }
             mapView.removeAnnotation(annotation)
         } else {
-            //TODO: - transition to Detail Screen
-            print("Place \(place.coordinate) is selected")
             let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
             detailViewController.place = place
             detailViewController.coreDataStack = coreDataStack

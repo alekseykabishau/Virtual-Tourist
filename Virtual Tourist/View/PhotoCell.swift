@@ -23,8 +23,6 @@ class PhotoCell: UICollectionViewCell {
         didSet {
             if isEditing {
                 selectionImage.image = isSelected ? UIImage(named: "Checked") : UIImage(named: "Unchecked")
-            } else {
-                print("not editing")
             }
         }
     }
