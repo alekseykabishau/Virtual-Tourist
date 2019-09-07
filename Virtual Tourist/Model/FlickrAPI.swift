@@ -76,7 +76,9 @@ class FlickrAPI {
     //TODO: - avoid using MapKit for this class
     //TODO: - make it more parameter driven
     func searchURL(for coordinate: CLLocationCoordinate2D) -> URL? {
-        let stringURL = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(key)&sort=date-posted-desc&lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&per_page=20&page=1&format=json&nojsoncallback=1"
+        let page = Int.random(in: 1...100)
+        let perPage = Int.random(in: 8...20)
+        let stringURL = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(key)&sort=date-posted-desc&lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&per_page=\(perPage)&page=\(page)&format=json&nojsoncallback=1"
         return URL(string: stringURL)
     }
 }
