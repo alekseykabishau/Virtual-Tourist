@@ -34,6 +34,7 @@ class DetailViewController: UIViewController {
         } else {
             print("Get New Colletion")
             noImagesLabel.isHidden = true
+            setLoadingImages(true)
             for photo in flickrPhotos {
                 coreDataStack.viewContext.delete(photo)
             }
@@ -127,6 +128,8 @@ class DetailViewController: UIViewController {
                 print("found \(photos.count) photo objects")
                 if photos.count == 0 {
                     self.noImagesLabel.isHidden = false
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    self.setLoadingImages(false)
                 }
                 self.save(photos)
             }
@@ -135,6 +138,14 @@ class DetailViewController: UIViewController {
     }
     
     func save(_ searchResults: [[String: AnyObject]]) {
+        let imagesToLoad = searchResults.count
+        var loadedImages: Int = 0 {
+            didSet {
+                if loadedImages == imagesToLoad {
+                    setLoadingImages(false)
+                }
+            }
+        }
         for dictionary in searchResults {
             let photo = Photo(context: coreDataStack.viewContext)
             photo.id = dictionary["id"] as? String
@@ -156,7 +167,8 @@ class DetailViewController: UIViewController {
                             photo.thumbImage = data
                         }
                         try? self.coreDataStack.viewContext.save()
-                        print("saving image \(photo.thumbImage) in core data")
+                        loadedImages += 1
+                        print("images loaded \(loadedImages)")
                         self.collectionView.reloadData()
                     }
                 }.resume()
