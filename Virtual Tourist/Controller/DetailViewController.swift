@@ -60,8 +60,6 @@ class DetailViewController: UIViewController {
         }
     }
     
-    //TODO: - Add RefreshControl to get new collection
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -127,7 +125,6 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem?.isEnabled = !isLoading
     }
     
-    //TODO: - Set Title to place name
     func addAnnotation(for place: Place) {
         let coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 50000.0, longitudinalMeters: 50000.0)
@@ -136,7 +133,7 @@ class DetailViewController: UIViewController {
     }
     
     func getPhotos(for place: Place) {
-        //TODO: - create type SearchResults with + and Error and use switch in func
+        
         flickrAPI.searchFlickr(coordinate: place.coordinate) { (photos, error) in
             if error != nil {
                 print("error getting photos from API")
@@ -189,7 +186,6 @@ class DetailViewController: UIViewController {
                     }
                 }.resume()
             }
-            
             photo.place = place
         }
         try? coreDataStack.viewContext.save()

@@ -13,11 +13,9 @@ let key = "e64b3ac5f1aada47c6436406cd313196"
 
 class FlickrAPI {
     
-    //TODO: - refactor by using generic Result type Enum with Success and Error cases
     func searchFlickr(coordinate: CLLocationCoordinate2D, completion: @escaping ([[String: AnyObject]], Error?) -> Void) {
         
         guard let searchURL = searchURL(for: coordinate) else {
-            // completion
             return
         }
         
@@ -58,11 +56,9 @@ class FlickrAPI {
                     }
                 case "fail":
                     print("fail")
-                    //TODO: - handle error -> completion with error
                     return
                 default:
                     print("unknown error")
-                    //TODO: - handle error -> completion with error
                     return
                 }
             } catch {
@@ -73,8 +69,6 @@ class FlickrAPI {
         }.resume()
     }
     
-    //TODO: - avoid using MapKit for this class
-    //TODO: - make it more parameter driven
     func searchURL(for coordinate: CLLocationCoordinate2D) -> URL? {
         let page = Int.random(in: 1...100)
         let perPage = Int.random(in: 8...20)
