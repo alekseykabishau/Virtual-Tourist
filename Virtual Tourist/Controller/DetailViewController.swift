@@ -24,6 +24,21 @@ class DetailViewController: UIViewController {
     let flickrAPI = FlickrAPI()
     var flickrPhotos = [Photo]()
     
+    var selectedImages: Int = 0 {
+        didSet {
+            if selectedImages == 0 {
+                newColletion.setTitle("No Photos Selected", for: .normal)
+                newColletion.isEnabled = false
+            } else if selectedImages == 1 {
+                newColletion.setTitle("Remove \(selectedImages) Photo", for: .normal)
+                newColletion.isEnabled = true
+            }  else {
+                newColletion.setTitle("Remove \(selectedImages) Photos", for: .normal)
+                newColletion.isEnabled = true
+            }
+        }
+    }
+    
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     
@@ -93,7 +108,8 @@ class DetailViewController: UIViewController {
     
     func configureUI() {
         if isEditing {
-            newColletion.setTitle("Remove Selected Photos", for: .normal)
+            newColletion.setTitle("No Photos Selected", for: .normal)
+            selectedImages = 0
         } else {
             newColletion.setTitle("Get New Collection", for: .normal)
         }
@@ -191,16 +207,25 @@ class DetailViewController: UIViewController {
             }
             try? coreDataStack.viewContext.save()
             collectionView.deleteItems(at: selected)
+            selectedImages = 0
         }
     }
 }
 
 extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !isEditing {
-            print("\(indexPath.item) is selected")
-            //TODO: - open in full mode
+
+        guard isEditing else {
+            return
         }
+        selectedImages += 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard isEditing else {
+            return
+        }
+        selectedImages -= 1
     }
 }
 
