@@ -172,22 +172,18 @@ class DetailViewController: UIViewController {
             
             flickrPhotos.append(photo)
             
-            if let url = photo.imageURL() {
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
-                    if error != nil {
-                        print(error ?? "")
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        if let data = data {
-                            photo.thumbImage = data
-                        }
-                        try? self.coreDataStack.viewContext.save()
-                        loadedImages += 1
-                        print("images loaded \(loadedImages)")
-                        self.collectionView.reloadData()
-                    }
-                }.resume()
+            let imageUrl = photo.imageURL()
+            flickrAPI.loadPhoto(from: imageUrl) { (data, error) in
+                if let error = error {
+                    print(error)
+                }
+                if let data = data {
+                    photo.thumbImage = data
+                }
+                try? self.coreDataStack.viewContext.save()
+                loadedImages += 1
+                print("image loaded \(loadedImages)")
+                self.collectionView.reloadData()
             }
             
             photo.place = place
