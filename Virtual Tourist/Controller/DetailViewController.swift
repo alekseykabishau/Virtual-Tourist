@@ -246,13 +246,6 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
         let itemWidth = availableWidth / itemsPerRow
         return CGSize(width: itemWidth, height: itemWidth)
     }
-    
-    
-    /* don't need because working with only one section
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    */
  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
